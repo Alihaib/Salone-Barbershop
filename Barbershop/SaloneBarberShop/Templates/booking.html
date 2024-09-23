@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>סלון ברברשופ - הזמנת תור</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333; /* רקע כהה */
+            color: #ccc; /* טקסט אפור בהיר */
+            margin: 0;
+            padding: 0;
+            direction: rtl; /* כיוון מימין לשמאל */
+        }
+
+        .container {
+            margin: 0 auto;
+            padding: 20px;
+            max-width: 1200px;
+        }
+
+        h2.section-heading {
+            color: #fff; /* טקסט כותרת לבן */
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .section-content {
+            color: #bbb; /* טקסט קצת בהיר יותר לפסקאות */
+            margin-bottom: 20px;
+        }
+
+        label {
+            color: #fff; /* טקסט תווית לבן */
+        }
+
+        .form-control {
+            background-color: #555; /* שדות קלט אפורים כהים */
+            color: #fff; /* טקסט לבן בשדות קלט */
+            border: none;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .form-control::placeholder {
+            color: #999; /* טקסט אפור למקום שמור */
+        }
+
+        .btn-primary {
+            background-color: #444; /* כפתור אפור כהה */
+            border: none;
+            color: #fff; /* טקסט לבן בכפתור */
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #666; /* אפור בהיר יותר במעבר עכבר */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            background-color: #444;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2 class="section-heading">הזמנת תור</h2>
+        <p class="section-content">קבעו תור בסלון ברברשופ לאחת מהשירותים המיוחדים שלנו. אנא מלאו את הטופס ונאשר את הזמנתכם בהקדם.</p>
+
+        <div class="form-container">
+            <form method="post" action="{% url 'booking' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_name">שם מלא</label>
+                    <input type="text" class="form-control" id="id_name" name="name" placeholder="השם המלא שלך" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_email">דוא"ל</label>
+                    <input type="email" class="form-control" id="id_email" name="email" placeholder="האימייל שלך" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_phone">מספר טלפון</label>
+                    <input type="tel" class="form-control" id="id_phone" name="phone" placeholder="מספר הטלפון שלך" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_service">בחר שירות</label>
+                    <select class="form-control" id="id_service" name="service" required>
+                        <option value="">בחר שירות</option>
+                        <option value="haircut">תספורת</option>
+                        <option value="beard_trim">קיצוץ זקן</option>
+                        <option value="hot_towel_shave">גילוח במגבת חמה</option>
+                        <option value="hair_styling">עיצוב שיער</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_date">תאריך מועדף</label>
+                    <input type="date" class="form-control" id="id_date" name="date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_time">שעה מועדפת</label>
+                    <input type="time" class="form-control" id="id_time" name="time" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_comments">הערות נוספות</label>
+                    <textarea class="form-control" id="id_comments" name="comments" rows="4" placeholder="האם יש לך בקשות מיוחדות?"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">הזמן עכשיו</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
